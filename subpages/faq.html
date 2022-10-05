@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQs</title>
+    <link rel="icon" type="image/x-icon" href="/images/logo.png">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+    <style>
+        body{
+    font-family: 'Work Sans', sans-serif;
+}
+.faq-heading{
+    border-bottom: #777;
+    padding: 20px 60px;
+}
+.faq-container{
+display: flex;
+justify-content: center;
+flex-direction: column;
+}
+.hr-line{
+  width: 60%;
+  margin: auto;
+  
+}
+   
+/* Style the buttons that are used to open and close the faq-page body */
+.faq-page {
+    /* background-color: #eee; */
+    color: #444;
+    cursor: pointer;
+    padding: 30px 20px;
+    width: 60%;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+    margin: auto;
+}
+.faq-body{
+    margin: auto;
+    /* text-align: center; */
+   width: 50%; 
+   padding: auto;
+   
+}
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active,
+.faq-page:hover {
+    background-color: #F9F9F9;
+}
+/* Style the faq-page panel. Note: hidden by default */
+.faq-body {
+    padding: 0 18px;
+    background-color: white;
+    display: none;
+    overflow: hidden;
+}
+.faq-page:after {
+    content: '\02795';
+    /* Unicode character for "plus" sign (+) */
+    font-size: 13px;
+    color: #777;
+    float: right;
+    margin-left: 5px;
+}
+.active:after {
+    content: "\2796";
+    /* Unicode character for "minus" sign (-) */
+}
+a:hover{
+    color:#ff960b ;
+}
+    </style>
+       <!--======== Font awsom link ========-->
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+       <!--======== Css ========-->
+       <style>
+           :root{
+       --orange:#e67e22;
+       --black:#333;
+       --light-color:#777;
+       --border:.1rem solid rgba(0,0,0,.2);
+       --box-shadow:0 .5rem 1rem rgba(0,0,0,.1);
+   }
+   *{
+       margin: 0;
+       padding: 0;
+       box-sizing: border-box;
+       outline: none;
+       border: none;
+       text-decoration: none;
+       font-family: Verdana, Geneva, Tahoma, sans-serif;
+       font-weight: lighter;
+   }
+   html{
+       font-size: 62.5%;
+       overflow-x: hidden;
+       scroll-behavior: smooth;
+       scroll-padding-top: 6rem;
+   }
+   .header{
+       position: fixed;
+       top: 0;
+       left: 0;
+       right: 0;
+       z-index: 1000;
+       background: #fff;
+       box-shadow: var(--box-shadow);
+       display: flex;
+       align-items: center;
+       padding: 1.2rem 7%;
+   }
+   .header .logo{
+       color: var(--black);
+       font-size: 2.5rem;
+       margin-right: auto;
+   }
+   .header .logo span{
+       color: var(--orange);
+   }
+   .header .navbar a{
+       color: var(--light-color);
+       margin-right: 2rem;
+       font-size: 1.7rem;
+       text-transform: capitalize;
+   }
+   .header .navbar a:hover{
+       color: var(--orange);
+   }
+   .header .icon i{
+       height: 4.5rem;
+       line-height: 4.5rem;
+       width: 4.5rem;
+       text-align: center;
+       color: var(--black);
+       background: #eee;
+       border-radius: 50%;
+       margin-left: .7rem;
+       font-size: 1.7rem;
+       cursor: pointer;
+   }
+   .header .icon i:hover{
+       color: #fff;
+       background: var(--orange);
+   }
+   .header .search-form{
+       position: absolute;
+       background: #fff;
+       border-radius: .5rem;
+       display: flex;
+       align-items: center;
+       box-shadow: var(--box-shadow);
+       top: 110%;
+       right: 7%;
+       height: 6rem;
+       width: 50rem;
+       padding: 1rem;
+       display: none;
+   }
+   .header .search-form.active{
+       display: flex;
+   }
+   .header .search-form #search-box{
+       width: 100%;
+       border: var(--border);
+       border-radius: .5rem;
+       padding: 1rem;
+       font-size: 1.7rem;
+       color: var(--black);
+       height: 100%;
+   }
+   .header .search-form label{
+       font-size: 2rem;
+       padding-left: 1rem;
+       padding-right: .5rem;
+       cursor: pointer;
+       color: var(--black);
+   }
+   .header .search-form label:hover{
+       color: var(--orange);
+   }
+   #menu-bar{
+       display: none;
+   }
+   @media (max-width:3000px){
+    img{
+        height: 300px;
+         margin-left: 350px; 
+         margin-top: 80px;
+    }
+   }
+   @media (max-width:991px){
+       html{
+           font-size: 55%;
+       }
+       .header{
+           padding: 1.5rem;
+       }
+   }
+   @media (max-width:768px){
+       #menu-bar{
+           display: inline-block;
+       }
+       .header .search-form{
+           top: 100%;
+           left: 0;
+           right: 0;
+           border-top: var(--border);
+           width: 100%;
+           border-radius: 0;
+       }
+       .header .navbar{
+           position: absolute;
+           top: 100%;
+           left: 0;
+           right: 0;
+           border-top: var(--border);
+           border-bottom: var(--border);
+           background: #fff;
+           display: none;
+       }
+       img{
+        padding-left: 140px;
+        margin-top: 100px;
+        height: 100px;
+        width: auto;
+        margin-left: 2px;
+    }
+       .header .navbar.active{
+           display: block;
+       }
+       .header .navbar a{
+           display: block;
+           background: #f7f7f7;
+           padding: 1.5rem;
+           margin: 1.5rem;
+           border-radius: .5rem;
+           border: var(--border);
+       }
+   }
+   @media (max-width:400px){
+    img{
+        padding-left: 100px;
+        margin-top: 100px;
+        height: 100px;
+        width: auto;
+        margin-left: 2px;
+    }
+   }
+
+       </style>
+       <!--======== Header section start ========-->
+       <header class="header">
+   
+           <a href="#" class="logo"><span>Know</span>Crypto</a>
+   
+           <nav class="navbar">
+            <a href="../index.html">Home</a>
+            <a href="../subpages/liveprice.html">Price</a>
+            <a href="../subpages/char.html">Chart</a>
+            <a href="../subpages/news.html">News</a>
+            <a href="../about-crypto/index.html">About Crypto</a>
+            <a href="aboutus.html">Developer</a>
+            <a href="../subpages/login.html">Log In</a>
+           </nav>
+   
+           <div class="icon">
+               <i class="fas fa-bars" id="menu-bar"></i>
+               <i class="fas fa-search" id="search-icon"></i>
+           </div>
+   
+           <form action="" class="search-form">
+               <input type="search" name="" placeholder="Search hear..." id="search-box">
+               <label for="search-box" class="fas fa-search"></label>
+           </form>
+       </header>
+       <!--======== Header section end ========-->
+   
+    <main>
+        <img src="../images/faq.webp" style="" alt="">
+        <section class="faq-container">
+            <div class="faq-one">
+
+                <!-- faq question -->
+                <h1 style="font-size:20px ;" class="faq-page">Is cryptocurrency a good investment?</h1>
+
+                <!-- faq answer -->
+                <div class="faq-body">
+                    <p style="font-size:15px ;">Investing in crypto assets is risky, but can be a good investment if you do it properly and as part of a diversified portfolio. Cryptocurrency is a good investment if you want to gain direct exposure to the demand for digital currency.</p>
+                </div>
+            </div>
+            <hr class="hr-line">
+
+            <div class="faq-two">
+
+                <!-- faq question -->
+                <h1 style="font-size:20px ;" class="faq-page">Does crypto have a future?</h1>
+
+                <!-- faq answer -->
+
+                <div class="faq-body">
+                    <p style="font-size:15px ;">Bitcoin and ethereum are down more than 50% from their all-time highs in late 2021. While there have been small surges in recent weeks, the crypto market as a whole is largely stalled. While no one knows for sure, some experts say crypto prices could fall even further before any sustained recovery.</p>
+                </div>
+            </div>
+            <hr class="hr-line">
+
+
+            <div class="faq-two">
+
+                <!-- faq question -->
+<h1 style="font-size:20px ;" class="faq-page">How should a beginner invest cryptocurrency?</h1>
+
+                <!-- faq answer -->
+                <div class="faq-body">
+                    <p style="font-size:15px ;">
+                        Step 1: Decide a crypto coin to invest in. Do your research well. ... <br> 
+Step 2: Choose a crypto exchange. Cryptocurrency exchanges are online trading platforms that let you buy and   sell crypto coins. ...
+Step 3: Choose a payment option. ... <br> 
+Step 4: Buy cryptocurrency. ... <br> 
+Step 5: Store securely. <br> 
+                    </p>
+                </div>
+            </div>
+
+            <div class="faq-two">
+                <hr class="hr-line">
+
+                <!-- faq question -->
+<h1 style="font-size:20px ;" class="faq-page">How do I start cryptocurrency trading?</h1>
+
+                <!-- faq answer -->
+                <div class="faq-body">
+                    <p style="font-size:15px ;">
+                        Sign up for a cryptocurrency exchange. ... <br>
+Fund your account. ... <br>
+Pick a crypto to invest in. ... <br>
+Start trading. ... <br>
+Store your cryptocurrency. ... <br>
+Market structure and cycles. ... <br>
+Chasing the whale. ... <br>
+Psychological cycles. <br>
+                    </p>
+                </div>
+            </div>
+            <hr class="hr-line">
+
+               <!-- faq question -->
+<h1 style="font-size:20px ; margin-bottom: 50px;" class="faq-page">How do I start trading?</h1>
+
+<!-- faq answer -->
+<div class="faq-body">
+    <p style="font-size:15px ; margin-bottom: 50px;">Four steps to start online trading in India <br>
+        Find a stockbroker. The first step will be to find an online stockbroker. ... <br>
+        Open demat and trading account. ... <br>
+        Login to your demat and trading account and add money. ... <br>
+        View stock details and start trading. <br>
+    </p>
+</div>
+</div>
+
+        </section>
+    </main>
+    <script>
+var faq = document.getElementsByClassName("faq-page");
+var i;
+
+for (i = 0; i < faq.length; i++) {
+    faq[i].addEventListener("click", function () {
+        /* Toggle between adding and removing the "active" class,
+        to highlight the button that controls the panel */
+        this.classList.toggle("active");
+
+        /* Toggle between hiding and showing the active panel */
+        var body = this.nextElementSibling;
+        if (body.style.display === "block") {
+            body.style.display = "none";
+        } else {
+            body.style.display = "block";
+        }
+    });
+}
+    </script>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <!--======== javascript ========-->
+    <script>
+        let menu = document.querySelector('#menu-bar');
+let nav = document.querySelector('.navbar');
+ 
+menu.onclick = () => {
+    menu.classList.toggle('fa-times');
+    nav.classList.toggle('active');
+    searchIcon.classList.remove('fa-times');
+    searchForm.classList.remove('active');
+}
+
+let searchIcon = document.querySelector('#search-icon');
+let searchForm = document.querySelector('.search-form');
+ 
+searchIcon.onclick = () => {
+    menu.classList.remove('fa-times');
+    nav.classList.remove('active');
+    searchIcon.classList.toggle('fa-times');
+    searchForm.classList.toggle('active');
+}
+
+window.onscroll = () => {
+    menu.classList.remove('fa-times');
+    nav.classList.remove('active');
+    searchIcon.classList.remove('fa-times');
+    searchForm.classList.remove('active');
+}
+
+    </script>
+</body>
+
+
+</html>

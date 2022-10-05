@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogIn</title>
+    <link rel="icon" type="image/x-icon" href="/images/logo.png">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!--======== Font awsom link ========-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            position: relative;
+            min-height: 100vh;
+            width: 100%;
+            overflow: hidden;
+        }
+        .sidebar{
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 78px;
+            background: #11101d;
+            padding: 6px 14px;
+            transition: all 0.5s ease;
+        }
+        .sidebar.active{
+            width: 240px;
+        }
+        .sidebar .logo_content .logo{
+            color: #fff;
+            display: flex;
+            height: 50px;
+            width: 100%;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+        }
+        .sidebar.active .logo_content .logo{
+            opacity: 1;
+            pointer-events: none;
+        } 
+        .logo_content .logo i{
+            font-size: 28px;
+            margin-right: 5px;
+
+        }
+        .logo_content .logo .logo_name{
+            font-size: 20px;
+            font-weight: 400;
+        }
+        .sidebar #btn{
+            position: absolute;
+            color: #fff;
+            left: 50%;
+            top: 6px;
+            font-size: 20px;
+            height: 50px;
+            width: 50px;
+            text-align: center;
+            line-height: 50px;
+            transform: translateX(-50%);
+        }
+        .sidebar.active #btn{
+            left: 90%;
+        }
+        .sidebar ul{
+            margin-top: 20px;
+        }
+        .sidebar ul li{
+            position: relative;
+            height: 50px;
+            width: 100%;
+            margin: 0 5px;
+            list-style: none;
+            line-height: 50px;
+        }
+        .sidebar ul li .tooltip{
+            position: absolute;
+            left: 122px;
+            top: 0;
+            transform: translateY(-50% , -50%);
+            border-radius: 6px;
+            height: 35px;
+            width: 122px;
+            background: #fff;
+            line-height: 35px;
+            text-align: center;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            transition: 0s;
+            opacity: 0;
+            pointer-events: none;
+            display: block;
+        }
+        .sidebar.active ul li .tooltip{
+            display: none;
+        }
+        .sidebar ul li:hover .tooltip{
+            transition: all 0.5s ease;
+            opacity: 1;
+            top: 50%;
+        } 
+        .sidebar ul li  input{
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            left: 0;
+            top: 0;
+            border-radius: 12px;
+            outline: none;
+            border: none;
+            background: #1d1b31;
+            padding-left: 50px;
+            font-size: 18px;
+            color: #fff ;
+        }
+        .sidebar ul li .bx-search{
+            position:absolute ;
+            z-index: 99;
+            color:#fff ;
+            font-size: 22px;
+            transition: all 0.5 ease;
+        }
+        .sidebar ul li .bx-search:hover{
+            background: #fff;
+            color: #11101d;
+        }
+        .sidebar ul li a{
+            color: #fff;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            border-radius: 12px;
+            white-space: nowrap;
+        }
+        .sidebar ul li a:hover{
+            color: #11101d;
+            background: #fff;
+        }
+        .sidebar ul li i{
+            height: 50px;
+            min-width: 50px;
+            border-radius: 12px;
+            line-height: 50px;
+            text-align: center;
+        }
+        .sidebar.active .links_name{
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .sidebar .links_name{
+            opacity: 0;
+            pointer-events:none;
+        }
+        .home_content{
+            position: absolute;
+            height: 100%;
+            width: calc(100% - 78px);
+            left: 78px;
+            transition: all 0.5 ease;
+        }
+        .home_content .text {
+            font-size: 25px;
+            font-weight: 500;
+            color: #1d1b31;
+        }
+        .sidebar.active ~ .home_content{
+            width: calc(100% -240px);
+            left: 240px;
+        }
+    </style>
+</head>
+<body>
+
+          <!--======= Content ======-->
+          <style>
+            * {
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: Tahoma, Verdana, Segoe, sans-serif;
+      font-size: 14px;
+      background: #f6fffd;
+      padding: 20px;
+      text-align: center;
+    }
+    
+    .wrapper {
+      width: 250px;
+      height: 350px;
+      margin: 60px auto;
+      perspective: 600px;
+      text-align: left;
+    }
+    
+    .rec-prism {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transform: translateZ(-100px);
+      transition: transform 0.5s ease-in;
+    }
+    
+    .face {
+      position: absolute;
+      width: 250px;
+      height: 350px;
+      padding: 20px;
+      background: rgba(250, 250, 250, 0.96);
+      border: 3px solid #07ad90;
+      border-radius: 3px;
+    }
+    .face .content {
+      color: #666;
+    }
+    .face .content h2 {
+      font-size: 1.2em;
+      color: #07ad90;
+    }
+    .face .content .field-wrapper {
+      margin-top: 30px;
+      position: relative;
+    }
+    .face .content .field-wrapper label {
+      position: absolute;
+      pointer-events: none;
+      font-size: 0.85em;
+      top: 40%;
+      left: 0;
+      transform: translateY(-50%);
+      transition: all ease-in 0.25s;
+      color: #999999;
+    }
+    .face .content .field-wrapper input[type=text], .face .content .field-wrapper input[type=password], .face .content .field-wrapper input[type=submit], .face .content .field-wrapper textarea {
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    .face .content .field-wrapper input[type=text]:focus, .face .content .field-wrapper input[type=password]:focus, .face .content .field-wrapper input[type=submit]:focus, .face .content .field-wrapper textarea:focus {
+      outline: none;
+    }
+    .face .content .field-wrapper input[type=text], .face .content .field-wrapper input[type=password], .face .content .field-wrapper textarea {
+      width: 100%;
+      border: none;
+      background: transparent;
+      line-height: 2em;
+      border-bottom: 1px solid #07ad90;
+      color: #666;
+    }
+    .face .content .field-wrapper input[type=text]::-webkit-input-placeholder, .face .content .field-wrapper input[type=password]::-webkit-input-placeholder, .face .content .field-wrapper textarea::-webkit-input-placeholder {
+      opacity: 0;
+    }
+    .face .content .field-wrapper input[type=text]::-moz-placeholder, .face .content .field-wrapper input[type=password]::-moz-placeholder, .face .content .field-wrapper textarea::-moz-placeholder {
+      opacity: 0;
+    }
+    .face .content .field-wrapper input[type=text]:-ms-input-placeholder, .face .content .field-wrapper input[type=password]:-ms-input-placeholder, .face .content .field-wrapper textarea:-ms-input-placeholder {
+      opacity: 0;
+    }
+    .face .content .field-wrapper input[type=text]:-moz-placeholder, .face .content .field-wrapper input[type=password]:-moz-placeholder, .face .content .field-wrapper textarea:-moz-placeholder {
+      opacity: 0;
+    }
+    .face .content .field-wrapper input[type=text]:focus + label, .face .content .field-wrapper input[type=text]:not(:placeholder-shown) + label, .face .content .field-wrapper input[type=password]:focus + label, .face .content .field-wrapper input[type=password]:not(:placeholder-shown) + label, .face .content .field-wrapper textarea:focus + label, .face .content .field-wrapper textarea:not(:placeholder-shown) + label {
+      top: -35%;
+      color: #42509e;
+    }
+    .face .content .field-wrapper input[type=submit] {
+      -webkit-appearance: none;
+      appearance: none;
+      cursor: pointer;
+      width: 100%;
+      background: #07ad90;
+      line-height: 2em;
+      color: #fff;
+      border: 1px solid #07ad90;
+      border-radius: 3px;
+      padding: 5px;
+    }
+    .face .content .field-wrapper input[type=submit]:hover {
+      opacity: 0.9;
+    }
+    .face .content .field-wrapper input[type=submit]:active {
+      transform: scale(0.96);
+    }
+    .face .content .field-wrapper textarea {
+      resize: none;
+      line-height: 1em;
+    }
+    .face .content .field-wrapper textarea:focus + label, .face .content .field-wrapper textarea:not(:placeholder-shown) + label {
+      top: -25%;
+    }
+    .face .thank-you-msg {
+      position: absolute;
+      width: 200px;
+      height: 130px;
+      text-align: center;
+      font-size: 2em;
+      color: #07ad90;
+      left: 50%;
+      top: 50%;
+      -webkit-transform: translate(-50%, -50%);
+    }
+    .face .thank-you-msg:after {
+      position: absolute;
+      content: "";
+      width: 50px;
+      height: 25px;
+      border: 10px solid #07ad90;
+      border-right: 0;
+      border-top: 0;
+      left: 50%;
+      top: 50%;
+      -webkit-transform: translate(-50%, -50%) rotate(0deg) scale(0);
+      transform: translate(-50%, -50%) rotate(0deg) scale(0);
+      -webkit-animation: success ease-in 0.15s forwards;
+      animation: success ease-in 0.15s forwards;
+      animation-delay: 2.5s;
+    }
+    .face-front {
+      transform: rotateY(0deg) translateZ(125px);
+    }
+    .face-top {
+      height: 250px;
+      transform: rotateX(90deg) translateZ(125px);
+    }
+    .face-back {
+      transform: rotateY(180deg) translateZ(125px);
+    }
+    .face-right {
+      transform: rotateY(90deg) translateZ(125px);
+    }
+    .face-left {
+      transform: rotateY(-90deg) translateZ(125px);
+    }
+    .face-bottom {
+      height: 250px;
+      transform: rotateX(-90deg) translateZ(225px);
+    }
+    
+    .nav {
+      margin: 20px 0;
+      padding: 0;
+    }
+    .nav li {
+      display: inline-block;
+      list-style-type: none;
+      font-size: 1em;
+      margin: 0 10px;
+      color: #42509e;
+      position: relative;
+      cursor: pointer;
+    }
+    .nav li:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 20px;
+      border-bottom: 1px solid #42509e;
+      transition: all ease-in 0.25s;
+    }
+    .nav li:hover:after {
+      width: 100%;
+    }
+    
+    .psw, .signup, .singin {
+      display: block;
+      margin: 20px 0;
+      font-size: 0.75em;
+      text-align: center;
+      color: #42509e;
+      cursor: pointer;
+    }
+    
+    small {
+      font-size: 0.7em;
+    }
+    
+    :root{
+    --orange:#e67e22;
+    --black:#333;
+    --light-color:#777;
+    --border:.1rem solid rgba(0,0,0,.2);
+    --box-shadow:0 .5rem 1rem rgba(0,0,0,.1);
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: lighter;
+}
+html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+}
+.header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: #fff;
+    box-shadow: var(--box-shadow);
+    display: flex;
+    align-items: center;
+    padding: 1.2rem 7%;
+}
+.header .logo{
+    color: var(--black);
+    font-size: 2.5rem;
+    margin-right: auto;
+}
+.header .logo span{
+    color: var(--orange);
+}
+.header .navbar a{
+    color: var(--light-color);
+    margin-right: 2rem;
+    font-size: 1.7rem;
+    text-transform: capitalize;
+}
+.header .navbar a:hover{
+    color: var(--orange);
+}
+.header .icon i{
+    height: 4.5rem;
+    line-height: 4.5rem;
+    width: 4.5rem;
+    text-align: center;
+    color: var(--black);
+    background: #eee;
+    border-radius: 50%;
+    margin-left: .7rem;
+    font-size: 1.7rem;
+    cursor: pointer;
+}
+.header .icon i:hover{
+    color: #fff;
+    background: var(--orange);
+}
+.header .search-form{
+    position: absolute;
+    background: #fff;
+    border-radius: .5rem;
+    display: flex;
+    align-items: center;
+    box-shadow: var(--box-shadow);
+    top: 110%;
+    right: 7%;
+    height: 6rem;
+    width: 50rem;
+    padding: 1rem;
+    display: none;
+}
+.header .search-form.active{
+    display: flex;
+}
+.header .search-form #search-box{
+    width: 100%;
+    border: var(--border);
+    border-radius: .5rem;
+    padding: 1rem;
+    font-size: 1.7rem;
+    color: var(--black);
+    height: 100%;
+}
+.header .search-form label{
+    font-size: 2rem;
+    padding-left: 1rem;
+    padding-right: .5rem;
+    cursor: pointer;
+    color: var(--black);
+}
+.header .search-form label:hover{
+    color: var(--orange);
+}
+#menu-bar{
+    display: none;
+}
+
+@media (max-width:991px){
+    html{
+        font-size: 55%;
+    }
+    .header{
+        padding: 1.5rem;
+    }
+}
+@media (max-width:768px){
+    #menu-bar{
+        display: inline-block;
+    }
+    .header .search-form{
+        top: 100%;
+        left: 0;
+        right: 0;
+        border-top: var(--border);
+        width: 100%;
+        border-radius: 0;
+    }
+    .header .navbar{
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        border-top: var(--border);
+        border-bottom: var(--border);
+        background: #fff;
+        display: none;
+    }
+    .header .navbar.active{
+        display: block;
+    }
+    .header .navbar a{
+        display: block;
+        background: #f7f7f7;
+        padding: 1.5rem;
+        margin: 1.5rem;
+        border-radius: .5rem;
+        border: var(--border);
+    }
+}
+    @-webkit-keyframes success {
+      from {
+        -webkit-transform: translate(-50%, -50%) rotate(0) scale(0);
+      }
+      to {
+        -webkit-transform: translate(-50%, -50%) rotate(-45deg) scale(1);
+      }
+    }
+        </style>
+
+     <!--======== Header section start ========-->
+     <header class="header">
+
+      <a href="#" class="logo"><span>Know</span>Crypto</a>
+
+      <nav class="navbar">
+        <a href="../index.html">Home</a>
+        <a href="../subpages/liveprice.html">Price</a>
+        <a href="../subpages/char.html">Chart</a>
+        <a href="../subpages/news.html">News</a>
+        <a href="../about-crypto/index.html">About Crypto</a>
+        <a href="../subpages/faq.html">FAQ</a>
+        <a href="aboutus.html">Developer</a>
+      </nav>
+
+      <div class="icon">
+          <i class="fas fa-bars" id="menu-bar"></i>
+          <i class="fas fa-search" id="search-icon"></i>
+      </div>
+
+      <form action="" class="search-form">
+          <input type="search" name="" placeholder="Search hear..." id="search-box">
+          <label for="search-box" class="fas fa-search"></label>
+      </form>
+  </header>
+  <!--======== Header section end ========-->
+
+
+
+
+       <ul class="nav" style="margin-top:80px ;">
+            <li onclick="showLogin()">Login</li>
+            <li onclick="showSignup()">Sign up</li>
+            <li onclick="showForgotPassword()">Forgot password</li>
+            <li onclick="showSubscribe()">Subscribe</li>
+            <li onclick="showContactUs()">Contact us</li>
+          </ul> 
+          <div class="wrapper">
+            <div class="rec-prism">
+              <div class="face face-top">
+                <div class="content">
+                  <h2>Subscribe</h2>
+                  <small>Enter your email so we can send you the latest updates!</small>
+                  <form onsubmit="event.preventDefault()">
+                    <div class="field-wrapper">
+                      <input type="text" name="email" placeholder="email">
+                      <label>e-mail</label>
+                    </div>
+                    <div class="field-wrapper">
+                      <input type="submit" onclick="showThankYou()">
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="face face-front">
+                <div class="content">
+                  <h2>Sign in</h2>
+                  <form onsubmit="event.preventDefault()">
+                    <div class="field-wrapper">
+                      <input type="text" name="username" placeholder="username">
+                      <label>username</label>
+                    </div>
+                    <div class="field-wrapper">
+                      <input type="password" name="password" placeholder="password" autocomplete="new-password">
+                      <label>password</label>
+                    </div>
+                    <div class="field-wrapper">
+                      <input type="submit" onclick="showThankYou()">
+                    </div>
+                    <span class="psw" onclick="showForgotPassword()">Forgot Password?   </span>
+                    <span class="signup" onclick="showSignup()">Not a user?  Sign up</span>
+                  </form>
+                </div>
+              </div>
+              <div class="face face-back">
+                <div class="content">
+                  <h2>Forgot your password?</h2>
+                  <small>Enter your email so we can send you a reset link for your password</small>
+                  <form onsubmit="event.preventDefault()">
+                    <div class="field-wrapper">
+                      <input type="text" name="email" placeholder="email">
+                      <label>e-mail</label>
+                    </div>
+                    <div class="field-wrapper">
+                      <input type="submit" onclick="showThankYou()">
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="face face-right">
+                <div class="content">
+                  <h2>Sign up</h2>
+                  <form onsubmit="event.preventDefault()">
+                    <div class="field-wrapper">
+                      <input type="text" name="email" placeholder="email">
+                      <label>e-mail</label>
+                    </div>
+                    <div class="field-wrapper">
+                      <input type="password" name="password" placeholder="password" autocomplete="new-password">
+                      <label>password</label>
+                    </div>
+                    <div class="field-wrapper">
+                      <input type="password" name="password2" placeholder="password" autocomplete="new-password">
+                      <label>re-enter password</label>
+                    </div>
+                    <div class="field-wrapper">
+                      <input type="submit" onclick="showThankYou()">
+                    </div>
+                    <span class="singin" onclick="showLogin()">Already a user?  Sign in</span>
+                  </form>
+                </div>
+              </div>
+              <div class="face face-left">
+                <div class="content">
+                  <h2>Contact us</h2>
+                  <form onsubmit="event.preventDefault()">
+                    <div class="field-wrapper">
+                      <input type="text" name="name" placeholder="name">
+                      <label>Name</label>
+                    </div>
+                    <div class="field-wrapper">
+                      <input type="text" name="email" placeholder="email">
+                      <label>e-mail</label>
+                    </div>
+                    <div class="field-wrapper">
+                      <textarea placeholder="your message"></textarea>
+                      <label>your message</label>
+                    </div>
+                    <div class="field-wrapper">
+                      <input type="submit" onclick="showThankYou()">
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="face face-bottom">
+                <div class="content">
+                  <div class="thank-you-msg">
+                    Thank you!
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <script>
+            let menu = document.querySelector('#menu-bar');
+    let nav = document.querySelector('.navbar');
+     
+    menu.onclick = () => {
+        menu.classList.toggle('fa-times');
+        nav.classList.toggle('active');
+        searchIcon.classList.remove('fa-times');
+        searchForm.classList.remove('active');
+    }
+    
+    let searchIcon = document.querySelector('#search-icon');
+    let searchForm = document.querySelector('.search-form');
+     
+    searchIcon.onclick = () => {
+        menu.classList.remove('fa-times');
+        nav.classList.remove('active');
+        searchIcon.classList.toggle('fa-times');
+        searchForm.classList.toggle('active');
+    }
+    
+    window.onscroll = () => {
+        menu.classList.remove('fa-times');
+        nav.classList.remove('active');
+        searchIcon.classList.remove('fa-times');
+        searchForm.classList.remove('active');
+    }
+    
+        </script>
+          <script>
+            let prism = document.querySelector(".rec-prism");
+    
+    function showSignup(){
+      prism.style.transform = "translateZ(-100px) rotateY( -90deg)";
+    }
+    function showLogin(){
+      prism.style.transform = "translateZ(-100px)";
+    }
+    function showForgotPassword(){
+      prism.style.transform = "translateZ(-100px) rotateY( -180deg)";
+    }
+    
+    function showSubscribe(){
+      prism.style.transform = "translateZ(-100px) rotateX( -90deg)";
+    }
+    
+    function showContactUs(){
+      prism.style.transform = "translateZ(-100px) rotateY( 90deg)";
+    }
+    
+    function showThankYou(){
+      prism.style.transform = "translateZ(-100px) rotateX( 90deg)";
+    }
+          </script>
+
+        </div>
+    </div>
+</div>
+
+    <script>
+        let btn = document.querySelector("#btn");
+        let sidebar = document.querySelector(".sidebar");
+        let searchBtn = document.querySelector(".bx-search");
+
+
+        btn.onclick = function() {
+            sidebar.classList.toggle("active");
+        }
+
+        searchBtn.onclick = function() {
+            sidebar.classList.toggle("active");
+        }
+        
+    </script>
+
+
+
+</body>
+<script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+</html>

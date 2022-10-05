@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+     <!-- font awesome cdn link  -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <title>About Us</title>
+    <link rel="icon" type="image/x-icon" href="/images/logo.png">
+</head>
+<body>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .section{
+            width: 100%;
+            min-width: 100vh;
+        }
+        .container{
+            width: 80%;
+            display: block;
+            margin: auto;
+        }
+        .content-section{
+            float: left;
+            width: 55%;
+        }
+        .image-section{
+            float: right;
+            width: 40%;
+            padding-top: 150px;
+        }
+        .image-section img{
+            width: 100%;
+            height: auto;
+        }
+        .content-section .title{
+            text-transform: uppercase;
+            font-size: 28px;
+            padding-top: 150px;
+        }
+        .content-section .content h3{
+            margin-top: 20px;
+            color: #5d5d5d;
+            font-size: 19px;
+        }
+        .content-section .content p{
+            margin-top: 10px;
+            font-family: sans-serif;
+            font-size: 17px;
+            line-height: 1.5;
+        }
+        .content-section .content .button{
+            margin-top: 30px;
+        }
+        .content-section .content .button a{
+            background-color: #3d3d3d;
+            padding: 12px 40px;
+            text-decoration: none;
+            color: #fff;
+            font-size: 25px;
+            letter-spacing: 1.5px;
+        }
+        .content-section .content .button a:hover{
+            background-color: #a52a2a;
+            color: #fff;
+        }
+        .content-section .social{
+            margin-top: 40px;
+            margin-bottom: 100px;
+        }
+        .content-section .social i{
+            font-family: 30px;
+            padding: 0px 10px ;
+        }
+        .content-section .social i:hover{
+            color: #a52a2a;
+        }
+        :root{
+    --orange:#e67e22;
+    --black:#333;
+    --light-color:#777;
+    --border:.1rem solid rgba(0,0,0,.2);
+    --box-shadow:0 .5rem 1rem rgba(0,0,0,.1);
+}
+
+*{
+    margin:0; padding:0;
+    box-sizing: border-box;
+    outline: none; border:none;
+    text-decoration: none;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: lighter;
+}
+
+html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+}
+
+section{
+    padding:2rem 7%;
+}
+
+.btn{
+    margin-top: 1rem;
+    display: inline-block;
+    background:var(--black);
+    color:#fff;
+    border-radius: .5rem;
+    padding:.9rem 3rem;
+    cursor: pointer;
+    font-size: 1.7rem;
+}
+
+.btn:hover{
+    background:var(--orange);
+}
+
+.header{
+    position: fixed;
+    top:0; left:0; right:0;
+    z-index: 1000;
+    background: #fff;
+    box-shadow: var(--box-shadow);
+    display: flex;
+    align-items: center;
+    padding:1.2rem 7%;
+}
+
+.header .logo{
+    color:var(--black);
+    font-size: 2.5rem;
+    margin-right: auto;
+}
+
+.header .logo span{
+    color:var(--orange);
+}
+
+.header .navbar a{
+    color:var(--light-color);
+    margin-right: 2rem;
+    font-size: 1.7rem;
+    text-transform: capitalize;
+}
+
+.header .navbar a:hover{
+    color:var(--orange);
+}
+
+.header .icons i{
+    height:4.5rem;
+    line-height:4.5rem;
+    width:4.5rem;
+    text-align: center;
+    color:var(--black);
+    background:#eee;
+    border-radius: 50%;
+    margin-left: .7rem;
+    font-size: 1.7rem;
+    cursor: pointer;
+}
+
+.header .icons i:hover{
+    color:#fff;
+    background:var(--orange);
+}
+
+.header .search-form{
+    position: absolute;
+    background:#fff;
+    border-radius: .5rem;
+    display: flex;
+    align-items: center;
+    box-shadow: var(--box-shadow);
+    top:110%; right:7%;
+    height:6rem;
+    width:50rem;
+    padding:1rem;
+    display: none;
+}
+
+.header .search-form.active{
+    display: flex;
+}
+
+.header .search-form #search-box{
+    width:100%;
+    border:var(--border);
+    border-radius: .5rem;
+    padding:1rem;
+    font-size: 1.7rem;
+    color:var(--black);
+    height: 100%;
+}
+
+.header .search-form label{
+    font-size: 2rem;
+    padding-left: 1rem;
+    padding-right: .5rem;
+    cursor: pointer;
+    color:var(--black);
+}
+
+.header .search-form label:hover{
+    color:var(--orange);
+}
+#menu-bars{
+    display: none;
+}
+@media (max-width:991px){
+
+html{
+    font-size: 55%;
+}
+
+.header{
+    padding:1.5rem;
+}
+
+section{
+    padding:2rem;
+}    
+
+.container{
+    grid-template-columns: 2fr 1fr;
+}
+
+}
+
+@media (max-width:768px){
+
+#menu-bars{
+    display: inline-block;
+}
+
+.header .search-form{
+    top:100%; left: 0; right: 0;
+    border-top: var(--border);
+    width: 100%;
+    border-radius: 0;
+}
+
+.header .navbar{
+    position: absolute;
+    top:100%; left: 0; right: 0;
+    border-top: var(--border);
+    border-bottom: var(--border);
+    background: #fff;        
+    display: none;
+}
+
+.header .navbar.active{
+    display: block;
+}
+
+.header .navbar a{
+    display: block;
+    background:#f7f7f7;
+    padding:1.5rem;
+    margin:1.5rem;
+    border-radius: .5rem;
+    border:var(--border);
+}
+
+.container{
+    grid-template-columns: 1fr;
+    gap:0;
+}
+
+.container .posts-container .post .image{
+    height: 30rem;;
+}
+
+.footer{
+    flex-flow: column;
+    text-align: center;
+}
+
+}
+
+@media (max-width:450px){
+
+html{
+    font-size: 50%;
+}
+
+.contact form .inputBox input{
+    width:100%;
+}    
+
+}
+        @media screen and (max-width:786px){
+            .container{
+            width: 80%;
+            display: block;
+            margin: auto;
+            padding-top: 50px;
+        }
+        .content-section{
+            float: none;
+            width: 100%;
+            display: block;
+            margin: auto;
+        }
+        .image-section{
+            float: right;
+            width: 100%;
+            display: block;
+            margin: auto;
+            padding-top: 20px;
+        }
+        .content-section .title{
+            text-align: center;
+            font-size: 19px;
+        }
+        .content-section .content .button{
+            text-align: center;
+        }
+        .content-section .content .button a{
+            padding: 9px 30px;
+        }
+        .content-section .social{
+            text-align: center;
+        }
+        }
+    </style>
+    <!-- header section starts  -->
+
+<header class="header">
+
+    <a href="#" class="logo"><span>Know</span>Crypto</a>
+
+    <nav class="navbar">
+        <a href="../index.html">Home</a>
+        <a href="../subpages/liveprice.html">Price</a>
+        <a href="../subpages/char.html">Chart</a>
+        <a href="../subpages/news.html">News</a>
+        <a href="../about-crypto/index.html">About Crypto</a>
+        <a href="../subpages/faq.html">FAQ</a>
+        <a href="../subpages/login.html">Log In</a>
+    </nav>
+
+    <div class="icons">
+        <i class="fas fa-bars" id="menu-bars"></i>
+        <i class="fas fa-search" id="search-icon"></i>
+    </div>
+
+    <form action="" class="search-form">
+        <input type="search" name="" placeholder="search here..." id="search-box">
+        <label for="search-box" class="fas fa-search"></label>
+    </form>
+
+</header>
+
+<!-- header section ends -->
+    <div class="section">
+        <div class="container">
+            <div class="content-section">
+                <div class="title">
+                    <h1>About Me</h1>
+                </div>
+                <div class="content">
+                    <h3>Hey everyone Durgesh here!</h3>
+                    <p>I am a computer science & Enginering student in Sr Institute of Management & Technology. Being from a tech background I am interested in programming ( C/C++) Data Structures and competitive programming. I am also a full stack web developer.</p>
+                    <div class="button">
+                        <a href="#">Read More</a>
+                    </div>
+                </div>
+                <div class="social">
+                    <i class="bi bi-facebook" style="font-size:25px ;"></i>
+                    <i class="bi bi-linkedin" style="font-size:25px ;"></i>
+                    <i class="bi bi-github" style="font-size:25px ;"></i>
+                </div>
+            </div>
+            <div class="image-section">
+                <img src="../images/1642166380130.jpg" style="border-radius:100% ;">
+            </div>
+        </div>
+    </div>
+    <script>
+        let menu = document.querySelector('#menu-bars');
+let navbar = document.querySelector('.navbar');
+
+menu.onclick = () =>{
+  menu.classList.toggle('fa-times');
+  navbar.classList.toggle('active');
+  searchIcon.classList.remove('fa-times');
+  searchForm.classList.remove('active');
+}
+
+let searchIcon = document.querySelector('#search-icon');
+let searchForm = document.querySelector('.search-form');
+
+searchIcon.onclick = () =>{
+  searchIcon.classList.toggle('fa-times');
+  searchForm.classList.toggle('active');
+  menu.classList.remove('fa-times');
+  navbar.classList.remove('active');
+}
+
+window.onscroll = () =>{
+  menu.classList.remove('fa-times');
+  navbar.classList.remove('active');
+  searchIcon.classList.remove('fa-times');
+  searchForm.classList.remove('active');
+}
+    </script>
+</body>
+</html>

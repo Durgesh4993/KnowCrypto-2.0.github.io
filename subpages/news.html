@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News</title>
+    <link rel="icon" type="image/x-icon" href="/images/logo.png">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            position: relative;
+            min-height: 100vh;
+            width: 100%;
+            overflow: hidden;
+        }
+        .sidebar{
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 78px;
+            background: #11101d;
+            padding: 6px 14px;
+            transition: all 0.5s ease;
+        }
+        .sidebar.active{
+            width: 240px;
+        }
+        .sidebar .logo_content .logo{
+            color: #fff;
+            display: flex;
+            height: 50px;
+            width: 100%;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+        }
+        .sidebar.active .logo_content .logo{
+            opacity: 1;
+            pointer-events: none;
+        } 
+        .logo_content .logo i{
+            font-size: 28px;
+            margin-right: 5px;
+
+        }
+        .logo_content .logo .logo_name{
+            font-size: 20px;
+            font-weight: 400;
+        }
+        .sidebar #btn{
+            position: absolute;
+            color: #fff;
+            left: 50%;
+            top: 6px;
+            font-size: 20px;
+            height: 50px;
+            width: 50px;
+            text-align: center;
+            line-height: 50px;
+            transform: translateX(-50%);
+        }
+        .sidebar.active #btn{
+            left: 90%;
+        }
+        .sidebar ul{
+            margin-top: 20px;
+        }
+        .sidebar ul li{
+            position: relative;
+            height: 50px;
+            width: 100%;
+            margin: 0 5px;
+            list-style: none;
+            line-height: 50px;
+        }
+        .sidebar ul li .tooltip{
+            position: absolute;
+            left: 122px;
+            top: 0;
+            transform: translateY(-50% , -50%);
+            border-radius: 6px;
+            height: 35px;
+            width: 122px;
+            background: #fff;
+            line-height: 35px;
+            text-align: center;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            transition: 0s;
+            opacity: 0;
+            pointer-events: none;
+            display: block;
+        }
+        .sidebar.active ul li .tooltip{
+            display: none;
+        }
+        .sidebar ul li:hover .tooltip{
+            transition: all 0.5s ease;
+            opacity: 1;
+            top: 50%;
+        } 
+        .sidebar ul li  input{
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            left: 0;
+            top: 0;
+            border-radius: 12px;
+            outline: none;
+            border: none;
+            background: #1d1b31;
+            padding-left: 50px;
+            font-size: 18px;
+            color: #fff ;
+        }
+        .sidebar ul li .bx-search{
+            position:absolute ;
+            z-index: 99;
+            color:#fff ;
+            font-size: 22px;
+            transition: all 0.5 ease;
+        }
+        .sidebar ul li .bx-search:hover{
+            background: #fff;
+            color: #11101d;
+        }
+        .sidebar ul li a{
+            color: #fff;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            border-radius: 12px;
+            white-space: nowrap;
+        }
+        .sidebar ul li a:hover{
+            color: #11101d;
+            background: #fff;
+        }
+        .sidebar ul li i{
+            height: 50px;
+            min-width: 50px;
+            border-radius: 12px;
+            line-height: 50px;
+            text-align: center;
+        }
+        .sidebar.active .links_name{
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .sidebar .links_name{
+            opacity: 0;
+            pointer-events:none;
+        }
+        .home_content{
+            position: absolute;
+            height: 100%;
+            width: calc(100% - 78px);
+            left: 78px;
+            transition: all 0.5 ease;
+        }
+        .home_content .text {
+            font-size: 25px;
+            font-weight: 500;
+            color: #1d1b31;
+        }
+        .sidebar.active ~ .home_content{
+            width: calc(100% -240px);
+            padding-right:160px;
+            left: 240px;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo_content">
+            <div class="logo">
+                <i class='bx bx-strikethrough'></i>
+            <div class="logo_name">Know Crypto</div>
+            </div>
+            <i class='bx bx-menu' id="btn"></i>
+        </div>
+        <ul class="nav_list">
+            <li>
+                <i class='bx bx-search'></i>
+                    <input type="text" placeholder="Search...">
+                <span class="tooltip">Search</span>
+            </li>
+            <li>
+                <a href="../index.html">
+                    <i class='bx bx-home-alt' ></i>
+                    <span class="links_name">Home</span>
+                </a>
+                <span class="tooltip">Home</span>
+            </li>
+            <li>
+                <a href="liveprice.html">
+                    <i class='bx bx-money-withdraw'></i>
+                    <span class="links_name">Price</span>
+                </a>
+                <span class="tooltip">Price</span>
+            </li>
+            <li>
+                <a href="char.html">
+                    <i class='bx bx-line-chart'></i>
+                    <span class="links_name">Chart</span>
+                </a>
+                <span class="tooltip">Chart</span>
+            </li>
+            <li>
+                <a href="../about-crypto/index.html">
+                    <i class='bx bxl-bitcoin' ></i>
+                    <span class="links_name">About Crypto</span>
+                </a>
+                <span class="tooltip">About Crypto</span>
+            </li>
+            <li>
+                <a href="faq.html">
+                    <i class='bx bx-question-mark'></i>
+                    <span class="links_name">FAQs</span>
+                </a>
+                <span class="tooltip">FAQs</span>
+            </li>
+            <li>
+                <a href="aboutus.html">
+                    <i class='bx bxl-dev-to'></i>
+                    <span class="links_name">Developer</span>
+                </a>
+                <span class="tooltip">Developer</span>
+            </li>
+            <li>
+                <a href="login.html">
+                    <i class='bx bx-log-in'></i>
+                    <span class="links_name">LogIn</span>
+                </a>
+                <span class="tooltip">LogIn</span>
+            </li>
+        </ul>
+    </div>
+    <div class="home_content">
+        <div class="text">
+            <!--======= Content ======-->
+            <!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js" async>
+    {
+    "feedMode": "all_symbols",
+    "colorTheme": "dark",
+    "isTransparent": false,
+    "displayMode": "regular",
+    "width": "100%",
+    "height": "1500",
+    "locale": "in"
+  }
+    </script>
+  </div>
+  <!-- TradingView Widget END -->
+        </div>
+    </div>
+
+
+    <script>
+        let btn = document.querySelector("#btn");
+        let sidebar = document.querySelector(".sidebar");
+        let searchBtn = document.querySelector(".bx-search");
+
+
+        btn.onclick = function() {
+            sidebar.classList.toggle("active");
+        }
+
+        searchBtn.onclick = function() {
+            sidebar.classList.toggle("active");
+        }
+    </script>
+
+
+
+</body>
+<script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+</html>
